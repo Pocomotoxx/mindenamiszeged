@@ -1,0 +1,71 @@
+
+---
+
+# 🗂️ `docs/api-spec.yaml` (OpenAPI vázlat)
+
+```yaml
+openapi: 3.0.0
+info:
+  title: Minden ami Szeged API
+  version: 0.1.0
+  description: REST API az alkalmazás MVP-hez
+
+servers:
+  - url: http://localhost:8000/api
+    description: Local dev server
+
+paths:
+  /auth/register:
+    post:
+      summary: Új felhasználó regisztráció
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: User created
+
+  /auth/login:
+    post:
+      summary: Bejelentkezés
+      responses:
+        '200':
+          description: JWT token visszaadása
+
+  /posts:
+    get:
+      summary: Posztok listázása
+      responses:
+        '200':
+          description: Success
+    post:
+      summary: Új poszt létrehozása
+      responses:
+        '201':
+          description: Created
+
+  /coupons:
+    get:
+      summary: Kuponok listázása
+    post:
+      summary: Új kupon létrehozása (csak cégnek)
+      responses:
+        '201':
+          description: Created
+
+  /reports:
+    post:
+      summary: Hiba bejelentése
+      responses:
+        '201':
+          description: Report created
